@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Css-->
     <link rel="stylesheet" href="./style/style.css">
 </head>
@@ -72,12 +75,40 @@
         </div>
 
 
-        <!--Card section with API  bg-[#F0FDF4]-->
+        <!--Card section with API  -->
 
-        <section class=" bg-slate-400 min-h-screen border-2 border-red-500">
+        <section class=" bg-[#F0FDF4] min-h-screen border-2 border-red-500 p-4">
 
             <h2 class="text-xl font-semibold flex justify-center 
             items-center mt-20">Choose Your Trees</h2>
+
+
+            <div class="flex p-15 gap-5">
+
+                <!--left column -> All categories-->
+
+                <div id="all-categori-list" class=" w-full md:w-1/5 ">
+                    <h1 class="text-xl font-semibold  justify-center flex">Categories</h1>
+
+                </div>
+
+                <!--middle column-->
+                <div id="all-plants-container"
+                    class=" w-full md:w-2/3 border-2 border-red-500  mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+
+                  
+
+
+                </div>
+
+                <!--right column-->
+                <div class=" w-1/4 border-2 border-red-500">
+                    <h1 class="text-xl font-semibold justify-center flex">Your Cart</h1>
+
+                </div>
+
+            </div>
+
 
 
 
@@ -86,7 +117,6 @@
         </section>
 
     </section>
-
 
 
 
