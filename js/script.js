@@ -82,7 +82,7 @@ const displayLoadPlants = (plants) => {
 
 
 
-// modal attached with async and await
+// // // modal attached with async and await
 
 const loadPlantsDetailsModal = async (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
@@ -90,21 +90,34 @@ const loadPlantsDetailsModal = async (id) => {
     const res = await fetch(url)
     const details = await res.json()
     showPlantsModal(details.plants)
-    
 
-    const modalDisplayBox=document.getElementById("modal-details-container");
-    modalDisplayBox.innerHTML="hi im test";
-
-    document.getElementById("my_modal_5").showModal();
-
-
-
-}
+};
 
 //need the modal show to display
 
-const showPlantsModal=(plants) =>{};
-console.log(showPlantsModal);
+const showPlantsModal = (plant) => {
+    //  console.log(showPlantsModal);
+    const modalDisplayBox = document.getElementById("modal-details-container");
+    modalDisplayBox.innerHTML = `
+                            <div>
+                            <h2 class="font-bold ">${plant.name}</h2>
+                            <img src="${plant.image}" alt="" class="w-full max-w-xs md:max-w-md h-[280px] mx-auto mt-4 object-cover rounded-lg">
+                            <p>
+                                <span class="font-semibold">Category : </span>${plant.category}
+                            </p>
+
+                            <p>
+                                <span class="font-semibold">Price : </span> <i
+                                    class="fa-solid fa-bangladeshi-taka-sign"></i>${plant.price}
+                            </p>
+
+                            <p>
+                                <span class="font-semibold">Description : </span> ${plant.description}
+                            </p>
+                        </div>`;
+    document.getElementById("plant-modal").showModal();
+};
+
 
 
 
