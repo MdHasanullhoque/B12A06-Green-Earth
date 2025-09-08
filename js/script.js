@@ -36,17 +36,18 @@ const displayLoadPlants = (plants) => {
         // "category": "Fruit Tree",
         // "price": 500
 
+
         const card = document.createElement("div");
         card.innerHTML = `
                      <div class="bg-white w-auto p-3 rounded-md flex flex-col">
                         <img src="${plant.image}" alt="${plant.name}" class="w-full h-40 object-cover rounded-md">
 
-                        <h2 class="font-semibold py-2 text-lg ">${plant.name}</h2>
+                        <h2 onclick="loadPlantsDetailsModal(${plant.id})" class="font-semibold py-2 text-lg ">${plant.name}</h2>
                         <p class="text-sm line-clamp-4 ">${plant.description}</p>
 
                         <div class="flex  items-center justify-between mt-2 ">
 
-                            <button  class="btn rounded-2xl h-8 bg-[#DCFCE7] bg-[-#15803D]">${plant.category}</button>
+                            <button class="btn rounded-2xl h-8 bg-[#DCFCE7] bg-[-#15803D] ">${plant.category}</button>
                             <p class=""><span><i class="fa-solid fa-bangladeshi-taka-sign">
                                     </i></span><span class="font-semibold">${plant.price}</span></p>
 
@@ -62,6 +63,50 @@ const displayLoadPlants = (plants) => {
     })
 
 }
+
+
+
+
+
+
+//#demo 1- for practice .........
+
+//const loadPlantsDetailsModal = (id) => { 
+//     fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+//         .then(res => res.json())
+//         .then(data => {
+//             console.log(data.plant); // সব detail console এ
+//             // এখানে modal fill করে open করবে
+//         });
+// };
+
+
+
+// modal attached with async and await
+
+const loadPlantsDetailsModal = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+    console.log(url)
+    const res = await fetch(url)
+    const details = await res.json()
+    showPlantsModal(details.plants)
+    
+
+    const modalDisplayBox=document.getElementById("modal-details-container");
+    modalDisplayBox.innerHTML="hi im test";
+
+    document.getElementById("my_modal_5").showModal();
+
+
+
+}
+
+//need the modal show to display
+
+const showPlantsModal=(plants) =>{};
+console.log(showPlantsModal);
+
+
 
 const displayCategories = (categoriList) => {
     // console.log(categoriList)
@@ -88,7 +133,7 @@ const displayCategories = (categoriList) => {
 
                 //  color remove from all buttons
                 document.querySelectorAll("#all-categori-list button").forEach(b => b.classList.remove("bg-[#15803D]", "text-white"));
-                
+
                 // adding color in clicked buttons
                 btn.classList.add("bg-[#15803D]", "text-white");
 
@@ -106,9 +151,9 @@ allCategories();
 
 
 
-// ---------------------------
+
 // Deafult card section,, all card showing here
-// ---------------------------
+
 fetch("https://openapi.programming-hero.com/api/categories")
     .then(res => res.json())
     .then(async (data) => {
