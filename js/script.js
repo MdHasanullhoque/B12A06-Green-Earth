@@ -229,7 +229,7 @@ const updateCartDisplay = () => {
         li.className = "flex justify-between items-center my-2";
 
         li.innerHTML = `
-            <div class="flex flex-col bg-gray-200 p-3 gap-1 w-[200px] rounded-md">
+            <div class="flex flex-col bg-[#F0FDF4] p-3 gap-1 w-[200px] rounded-md">
             <span>${item.name} (x${item.quantity}) - ${item.price * item.quantity}৳</span></div>
             <button class="text-red-500" onclick="removeFromCart(${item.id})">❌</button>
         `;
