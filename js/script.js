@@ -7,6 +7,7 @@ const allCategories = () => {
 
 
 const plantsLoadInDisplay = (id) => {
+
     // console.log(id)
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     // const url=`https://openapi.programming-hero.com/api/category/1`; //
@@ -15,6 +16,13 @@ const plantsLoadInDisplay = (id) => {
         .then((data) => displayLoadPlants(data.plants));
 
 }
+
+
+
+
+
+
+
 
 const displayLoadPlants = (plants) => {
     // console.log(plants)
@@ -242,7 +250,7 @@ const updateCartDisplay = () => {
 
     document.getElementById("cart-total").innerText = total;
 };
-        //remove button creat
+//remove button creat
 const removeFromCart = (id) => {
     if (cart[id]) {
         total -= cart[id].price;
