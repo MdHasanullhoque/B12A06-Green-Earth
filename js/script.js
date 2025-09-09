@@ -1,5 +1,5 @@
 const allCategories = () => {
-    fetch("https://openapi.programming-hero.com/api/categories")
+    fetch("https://openapi.programming-hero.com/api/categories") //all categories list adding in left div
         .then(res => res.json())
         .then((json) => displayCategories(json.categories));
 };
@@ -37,6 +37,8 @@ const displayLoadPlants = (plants) => {
         // "price": 500
 
 
+        //card section with all plants data
+
         const card = document.createElement("div");
         card.innerHTML = `
                      <div class="bg-white w-auto p-3 rounded-md flex flex-col">
@@ -53,7 +55,7 @@ const displayLoadPlants = (plants) => {
 
                         </div>
 
-                        <button class="btn w-full h-10 mt-5 rounded-2xl bg-[#15803D] text-white ">Add to Cart</button>
+                        <button onclick='addToCart(${JSON.stringify(plant)})' class="btn w-full h-10 mt-5 rounded-2xl bg-[#15803D] text-white ">Add to Cart</button>
 
                     </div>
     
@@ -82,7 +84,7 @@ const displayLoadPlants = (plants) => {
 
 
 
-// // // modal attached with async and await
+// // // modal attached with async and await, showing on card
 
 const loadPlantsDetailsModal = async (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
@@ -119,7 +121,7 @@ const showPlantsModal = (plant) => {
 };
 
 
-
+//categori adding and styles aadding
 
 const displayCategories = (categoriList) => {
     // console.log(categoriList)
@@ -186,3 +188,70 @@ fetch("https://openapi.programming-hero.com/api/categories")
 
 
 
+
+
+
+
+
+// cart item total box showing on the display function
+
+let cart = {};
+let total = 0;
+
+const addToCart = (plant) => {
+
+
+
+    // alert massage for added  to cart for clicked
+    alert(`${plant.name.toUpperCase()} : has been added to the cart`);
+
+
+    //total value and qty added in maths //plants id is card identity for showing each card 
+
+    if (cart[plant.id]) {
+        cart[plant.id].quantity += 1;
+    } else {
+        cart[plant.id] = { ...plant, quantity: 1 };
+    }
+
+    total += plant.price;
+    updateCartDisplay();
+};
+
+const updateCartDisplay = () => {
+    const cartList = document.getElementById("cart-list");
+    cartList.innerHTML = ""; //formate inner div cart
+
+
+
+    Object.values(cart).forEach(item => {
+        const li = document.createElement("li");
+        li.className = "flex justify-between items-center my-2";
+
+        li.innerHTML = `
+            <div class="flex flex-col bg-gray-200 p-3 gap-1 w-[200px] rounded-md">
+            <span>${item.name} (x${item.quantity}) - ${item.price * item.quantity}৳</span></div>
+            <button class="text-red-500" onclick="removeFromCart(${item.id})">❌</button>
+        `;
+
+
+
+
+        cartList.appendChild(li);
+    });
+
+    document.getElementById("cart-total").innerText = total;
+};
+        //remove button creat
+const removeFromCart = (id) => {
+    if (cart[id]) {
+        total -= cart[id].price;
+        cart[id].quantity -= 1;
+
+        if (cart[id].quantity === 0) {
+            delete cart[id];
+        }
+
+        updateCartDisplay();
+    }
+};
